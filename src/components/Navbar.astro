@@ -1,0 +1,38 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const links = [
+  { href: "#tasks", label: "المسار" },
+  { href: "#features", label: "المزايا" },
+  { href: "#pricing", label: "الاشتراك" },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-md transition-colors dark:border-gray-800 dark:bg-gray-900/80">   <nav class="container-page flex h-16 items-center justify-between">
+  
+  
+    <a href="/" class="flex items-center gap-2 text-lg font-bold text-brand-700 dark:text-brand-500">
+      <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">S</span>
+      <span>App Builders</span>
+    </a>
+
+    <ul class="hidden items-center gap-8 md:flex">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="text-sm font-medium text-gray-700 transition hover:text-brand-600 dark:text-gray-300 dark:hover:text-brand-500"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- ⬇️ الأزرار مجمعة هنا ⬇️ -->
+    <div class="flex items-center gap-3">
+      <ThemeToggle />
+      <a href="#pricing" class="btn-primary text-sm !px-4 !py-2">ابدأ الآن</a>
+    </div>
+  </nav>
+</header>

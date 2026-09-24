@@ -1,0 +1,72 @@
+---
+import { tasks, stages, stats } from "../data/tasks.js";
+import TaskCard from "./TaskCard.astro";
+---
+
+<section id="tasks" class="section bg-gray-50 transition-colors dark:bg-gray-900">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+        شوف مهام المسار الـ{stats.total}
+      </h2>
+      <p class="mt-4 text-gray-600 dark:text-gray-400">من تحديد الفكرة إلى تجهيز النشر</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mt-10 flex flex-wrap justify-center gap-2" role="tablist">
+      <button
+        class="stage-tab rounded-full bg-brand-600 px-5 py-2 text-sm font-medium text-white transition"
+        data-stage="الكل"
+      >
+        الكل
+      </button>
+      {stages.map((stage) => (
+        <button
+          class="stage-tab rounded-full border border-gray-200 bg-white px-5 py-2 text-sm font-medium text-gray-700 transition hover:border-brand-300 hover:text-brand-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:border-brand-500 dark:hover:text-brand-400"
+          data-stage={stage}
+        >
+          {stage}
+        </button>
+      ))}
+    </div>
+
+    <!-- Tasks -->
+    <div id="tasks-container" class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {tasks.map((task) => (
+        <div class="task-wrapper" data-stage={task.stage}>
+          <TaskCard {...task} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".stage-tab");
+  const wrappers = document.querySelectorAll<HTMLElement>(".task-wrapper");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const stage = tab.dataset.stage;
+
+      // Update tab styles
+      tabs.forEach((t) => {
+        t.classList.remove("bg-brand-600", "text-white");
+        t.classList.add("bg-white", "text-gray-700", "border", "border-gray-200");
+        t.classList.add("dark:bg-gray-800", "dark:text-gray-300", "dark:border-gray-700");
+      });
+      tab.classList.add("bg-brand-600", "text-white");
+      tab.classList.remove("bg-white", "text-gray-700", "border", "border-gray-200");
+      tab.classList.remove("dark:bg-gray-800", "dark:text-gray-300", "dark:border-gray-700");
+
+      // Filter tasks
+      wrappers.forEach((w) => {
+        if (stage === "الكل" || w.dataset.stage === stage) {
+          w.style.display = "";
+        } else {
+          w.style.display = "none";
+        }
+      });
+    });
+  });
+</script>

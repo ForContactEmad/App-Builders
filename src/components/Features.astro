@@ -1,0 +1,42 @@
+---
+const features = [
+  {
+    icon: "🎯",
+    title: "طلبات تنفيذ مصمّمة لفكرتك",
+    desc: "19 مهمة، مع طلبات تبني على فكرة تطبيقك ومراجعات تساعدك من التنفيذ إلى تجهيز النشر.",
+  },
+  {
+    icon: "📱",
+    title: "حتى 3 أفكار باشتراك واحد",
+    desc: "حتى 3 مشاريع إجمالًا للحساب. لكل مشروع تقدّمه المحفوظ، وتقدر تبدّل بينها.",
+  },
+  {
+    icon: "🛡️",
+    title: "جرّب المنصة بضمان 7 أيام",
+    desc: "استرداد كامل للمبلغ خلال 7 أيام، من دون ذكر سبب.",
+  },
+];
+---
+
+<section id="features" class="section transition-colors dark:bg-gray-950">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+        ليش APP Builder؟
+      </h2>
+
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {features.map((f) => (
+        <div class="rounded-2xl border border-gray-100 bg-white p-7 transition hover:border-brand-200 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-brand-700">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-2xl dark:bg-gray-800">
+            {f.icon}
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{f.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{f.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

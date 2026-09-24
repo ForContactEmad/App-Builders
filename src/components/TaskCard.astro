@@ -1,0 +1,35 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  free?: boolean;
+}
+
+const { id, title, description, duration, free = false } = Astro.props;
+---
+
+<article
+  class="task-card group flex cursor-pointer items-start gap-4 rounded-2xl border border-gray-100 bg-white p-5 transition hover:border-brand-200 hover:shadow-lg dark:border-gray-800 dark:bg-gray-800 dark:hover:border-brand-700"
+  data-task-id={id}
+>
+  <div
+    class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-50 font-bold text-brand-700 transition group-hover:bg-brand-600 group-hover:text-white dark:bg-gray-900 dark:text-brand-400 dark:group-hover:bg-brand-500 dark:group-hover:text-white"
+  >
+    {id}
+  </div>
+
+  <div class="flex-1">
+    <div class="flex items-center gap-2">
+      <h3 class="font-semibold text-gray-900 dark:text-white">{title}</h3>
+      {free && (
+        <span class="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700 dark:bg-green-900/40 dark:text-green-400">
+          مجاني
+        </span>
+      )}
+    </div>
+    <p class="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{description}</p>
+    <span class="mt-2 inline-block text-xs text-gray-400 dark:text-gray-500">{duration}</span>
+  </div>
+</article>
